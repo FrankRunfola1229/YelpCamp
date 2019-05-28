@@ -19,7 +19,7 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
     
 //url = "mongodb+srv://devsprout:Ready4go!@cluster0-lakvf.mongodb.net/test?retryWrites=true";
-var url = process.env.DATABASEURL;// || "mongodb://localhost/yelp_camp_final";
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_final";
 
 mongoose.connect(url);
 
