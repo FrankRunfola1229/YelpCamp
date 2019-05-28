@@ -95,43 +95,31 @@ Each Campground has:
 * Prevent an unauthenticated user from creating a campground
 * Save username+id to newly created campground
 
-# Editing Campgrounds
-* Add Method-Override
-* Add Edit Route for Campgrounds
-* Add Link to Edit Page
-* Add Update Route
 
-#Deleting Campgrounds
-* Add Destroy Route
-* Add Delete button
+TODOS
+* Add "back" redirect to login
+* Add method-override
+* BOOTSTRAP NAV COLLPASE JS
+* Flash Messages
+* Refactor container div to header
+* Show/hide delete and update buttons
+* style login/register forms
+* Random Background Landing Page
+* Refactor middleware
+* change styling in show template - comment delete/update
+* UPATE/DELETE CAMPGROUND
 
-#Authorization Part 1: Campgrounds
-* User can only edit his/her campgrounds
-* User can only delete his/her campgrounds
-* Hide/Show edit and delete buttons
+* BOOTSTRAP NAV COLLPASE JS
+* Flash Messages
+* Refactor container div to header
+* Show/hide delete and update buttons
+* style login/register forms
+* Random Background Landing Page
+* Refactor middleware
+* change styling in show template - comment delete/update
+* UPDATE/DELETE CAMPGROUND
 
-#Editing Comments
-* Add Edit route for comments
-* Add Edit button
-* Add Update route
 
-<!--/campgrounds/:id/edit-->
-<!--/campgrounds/:id/comments/:comment_id/edit-->
-
-#Deleting Comments
-* Add Destroy route
-* Add Delete button
-
-#Authorization Part 2: Comments
-* User can only edit his/her comments
-* User can only delete his/her comments
-* Hide/Show edit and delete buttons
-* Refactor Middleware
-
-#Adding in Flash!
-* Demo working version
-* Install and configure connect-flash
-* Add bootstrap alerts to header
 
 
 RESTFUL ROUTES

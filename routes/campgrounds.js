@@ -2,7 +2,7 @@ var express = require("express");
 var router  = express.Router();
 var Campground = require("../models/campground");
 var middleware = require("../middleware");
-
+var request = require("request");
 
 //INDEX - show all campgrounds
 router.get("/", function(req, res){
@@ -11,7 +11,13 @@ router.get("/", function(req, res){
        if(err){
            console.log(err);
        } else {
-          res.render("campgrounds/index",{campgrounds:allCampgrounds});
+           request('https://maps.googleapis.com/maps/api/geocode/json?address=sardine%20lake%20ca&key=AIzaSyBtHyZ049G_pjzIXDKsJJB5zMohfN67llM', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body); // Show the HTML for the Modulus homepage.
+                res.render("campgrounds/index",{campgrounds:allCampgrounds});
+
+            }
+});
        }
     });
 });
@@ -58,37 +64,41 @@ router.get("/:id", function(req, res){
     });
 });
 
-// EDIT CAMPGROUND ROUTE
-router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res){
+router.get("/:id/edit", middleware.checkUserCampground, function(req, res){
+    console.log("IN EDIT!");
+    //find the campground with provided ID
     Campground.findById(req.params.id, function(err, foundCampground){
-        res.render("campgrounds/edit", {campground: foundCampground});
+        if(err){
+            console.log(err);
+        } else {
+            //render show template with that campground
+            res.render("campgrounds/edit", {campground: foundCampground});
+        }
     });
 });
 
-// UPDATE CAMPGROUND ROUTE
-router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
-    // find and update the correct campground
-    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
-       if(err){
-           res.redirect("/campgrounds");
-       } else {
-           //redirect somewhere(show page)
-           res.redirect("/campgrounds/" + req.params.id);
-       }
+router.put("/:id", function(req, res){
+    var newData = {name: req.body.name, image: req.body.image, description: req.body.desc};
+    Campground.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, campground){
+        if(err){
+            req.flash("error", err.message);
+            res.redirect("back");
+        } else {
+            req.flash("success","Successfully Updated!");
+            res.redirect("/campgrounds/" + campground._id);
+        }
     });
 });
 
-// DESTROY CAMPGROUND ROUTE
-router.delete("/:id",middleware.checkCampgroundOwnership, function(req, res){
-   Campground.findByIdAndRemove(req.params.id, function(err){
-      if(err){
-          res.redirect("/campgrounds");
-      } else {
-          res.redirect("/campgrounds");
-      }
-   });
-});
 
+//middleware
+// function isLoggedIn(req, res, next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     req.flash("error", "You must be signed in to do that!");
+//     res.redirect("/login");
+// }
 
 module.exports = router;
 
