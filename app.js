@@ -29,6 +29,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
 app.use(cookieParser('secret'));
 
+
 // seedDB(); //seed the database
 
 // PASSPORT CONFIGURATION
