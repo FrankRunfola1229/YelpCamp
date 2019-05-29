@@ -19,10 +19,20 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
     
-//url = "mongodb+srv://admin:123@cluster0-lakvf.mongodb.net/test?retryWrites=true";
+//url = 'mongodb+srv://admin1:ready4go@cluster0-lakvf.mongodb.net/test?retryWrites=true';
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_final";
 
-mongoose.connect(url);
+mongoose.connect(url, {
+	useNewUrlParser:true,
+	useCreateIndex: true
+	
+	}).then(() => {
+		console.log("Connected to DB = " + url);
+	
+	}).catch(err => {
+		console.log("DB CONNECTION ERROR!!!! : ", err.message);
+});
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -60,11 +70,11 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-var port = (process.env.PORT || 3000);
+var port = process.env.PORT;
 var ip = process.env.IP;
 
-app.listen(port, ip, function(){
-   console.log("The YelpCamp Server Has Started!");
+app.listen(3000, ip, function(){
+    console.log("The YelpCamp Server Has Started!..");
 	console.log("Port= " + port);
 	console.log("url= " + url);
 	console.log("ip= " + ip);
