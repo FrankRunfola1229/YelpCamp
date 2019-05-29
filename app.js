@@ -21,6 +21,7 @@ var commentRoutes    = require("./routes/comments"),
     
 //url = "mongodb+srv://devsprout:Ready4go!@cluster0-lakvf.mongodb.net/test?retryWrites=true";
 var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_final";
+console.log("url= " + url);
 
 mongoose.connect(url);
 
@@ -55,9 +56,6 @@ app.use(function(req, res, next){
 });
 
 
-
-
-
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
@@ -67,5 +65,5 @@ var port = (process.env.PORT || 3000);
 
 app.listen(port, process.env.IP, function(){
    console.log("The YelpCamp Server Has Started!");
-	console.log(process.env.PORT);
+	console.log("Port= " + process.env.PORT);
 }); 
