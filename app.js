@@ -70,14 +70,14 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-var port = process.env.PORT;
-var ip = process.env.IP;
+var port = process.env.PORT || 3000;
 
-app.listen(port, ip, function(){
+app.listen(port,  process.env.IP, function(){
+	
     console.log("The YelpCamp Server Has Started!..");
 	console.log("Port= " + port);
 	console.log("url= " + url);
-	console.log("ip= " + ip);
+	console.log("ip= " +  process.env.IP);
 	
 
 }); 
