@@ -77,7 +77,4 @@ app.listen(port,  process.env.IP, function(){
     console.log("The YelpCamp Server Has Started!..");
 	console.log("Port= " + port);
 	console.log("url= " + url);
-	console.log("ip= " +  process.env.IP);
-	
-
 }); 

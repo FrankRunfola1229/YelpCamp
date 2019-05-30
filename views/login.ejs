@@ -1,21 +1,13 @@
 <% include ./partials/header %>
-
-
-<!--
-<div class="container">
     <div class="row">
         <h1 style="text-align: center">Login</h1>
         <div style="width: 30%; margin: 25px auto;">
             <form action="/login" method="post">
                 <div class="form-group">
-					<span class="fas fa-user"></span>
-				
                     <input class="form-control" type="text" name="username" placeholder="username">
-						
                 </div>
                 <div class="form-group">
-					<span class="input-group-text"><i class="fas fa-key"></i></span>
-                    <input class="as fa-key form-control" type="password" name="password" placeholder="password">
+                    <input class="form-control" type="password" name="password" placeholder="password">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Login</button>
@@ -24,40 +16,4 @@
             <a href="/campgrounds">Go Back</a>
         </div>
     </div>
-</div>
--->
-
-
-
-<div class="container">
-
-    <div class="row justify-content-center">
-        <div class="col-md-6 login-form-1">
-
-            <form asp-controller="/login" asp-action="Login" method="post">
-                <div id="username" class="form-group">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" name="username" class="form-control" placeholder="Username *" required />
-                    </div>
-                </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-key"></i></span>
-                    </div>
-                    <input type="password" name="password" class="form-control" placeholder="Password *" required />
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-lg btn-primary btn-block btnSubmit" placeholder="Login" />
-                </div>
-								
-            </form>
-			 <a href="/campgrounds">Go Back</a>
-        </div>
-    </div>
-</div>
-
-
-
-
 <% include ./partials/footer %>
